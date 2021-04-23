@@ -6,12 +6,19 @@ import { AppComponent } from './app.component';
 
 import { NgxSoapModule} from 'ngx-soap';
 
+import { HttpClientModule } from '@angular/common/http';
+import { MovieComponent } from './movie/movie.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     NgxSoapModule
   ],

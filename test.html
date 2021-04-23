@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>SOAP JavaScript Client Test</title>
+    <script type="text/javascript">
+        function soap() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open('GET', 'http://localhost:8080/ws', true);
+
+            // build SOAP request
+            var sr =
+              '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"'+
+                    'xmlns:tns="http://tepitoflix.com/desktop_client/gen">'+
+                '<soapenv:Header/>'+
+                '<soapenv:Body>'+
+                    '<tns:getMovieRequest>'+
+                      '<tns:id>1</tns:id>'+
+                    '</tns:getMovieRequest>'+
+                '</soapenv:Body>'+
+              '</soapenv:Envelope>';
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        alert(xmlhttp.responseText);
+                        // alert('done. use firebug/console to see network response');
+                    }
+                }
+            }
+            // Send the POST request
+            xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+            xmlhttp.send(sr);
+            // send request
+            // ...
+        }
+    </script>
+</head>
+<body>
+    <form name="Demo" action="" method="GET">
+        <div>
+            <input type="button" value="Soap" onclick="soap();" />
+        </div>
+    </form>
+</body>
+</html> <!-- typo -->

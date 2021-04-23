@@ -32,7 +32,7 @@ public class MovieEndpoint {
     public GetMovieResponse getMovie(@RequestPayload GetMovieRequest request) {
         GetMovieResponse response = new GetMovieResponse();
         response.setMovie(movieRepository.findMovie(request.getId()));
-        System.out.println("Respuesta");
+        System.out.println("Respuesta id "+ request.getId());
         return response;
     }
 }
