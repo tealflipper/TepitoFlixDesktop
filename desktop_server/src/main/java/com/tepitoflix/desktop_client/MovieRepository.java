@@ -55,6 +55,8 @@ public class MovieRepository {
         myMovie.setRuntime(85);
         myMovie.setPrice(9.99);
         movies.put(myMovie3.getId(), myMovie3);
+
+        System.out.println("movies added");
     }
 
     //get movies by id
