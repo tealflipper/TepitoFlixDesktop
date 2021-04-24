@@ -6,6 +6,7 @@
 package com.tepitoflix.desktop_client;
 import com.tepitoflix.desktop_client.gen.GetMovieRequest;
 import com.tepitoflix.desktop_client.gen.GetMovieResponse;
+import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -29,7 +30,7 @@ public class MovieEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getMovieRequest")
     @ResponsePayload
-    public GetMovieResponse getMovie(@RequestPayload GetMovieRequest request) {
+    public GetMovieResponse getMovie(@RequestPayload GetMovieRequest request) throws SQLException {
         GetMovieResponse response = new GetMovieResponse();
         response.setMovie(movieRepository.findMovie(request.getId()));
         System.out.println("Respuesta id "+ request.getId());

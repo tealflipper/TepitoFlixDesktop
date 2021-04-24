@@ -52,11 +52,13 @@ export class AppComponent implements OnInit{
     const body = {
       id: this.movie.id
     };
+    this.xmlResponse = "";
+          this.message = "";
     this.client.call('getMovie',body).subscribe(
         (res: ISoapMethodResponse) => {
           console.log('method response', res);
           this.xmlResponse = res.xml;
-          this.message = res.responseBody;
+          this.message = JSON.stringify(res.result);
           this.loading = false;
         },
         err => console.log(err)
