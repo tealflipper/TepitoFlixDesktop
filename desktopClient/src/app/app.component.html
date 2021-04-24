@@ -8,56 +8,31 @@
 </div> -->
 <!-- <router-outlet></router-outlet> -->
 <h2>Pelicula {{movie.id}}</h2>
-<mat-toolbar color="primary">
-  SOAP Calculator app
-  <span style="flex: 1 1 auto"></span>
-  <button mat-button (click)="showDiagnostic = !showDiagnostic">
+
+  <button (click)="showDiagnostic = !showDiagnostic">
     <ng-container *ngIf="!showDiagnostic">Show Diagnostic</ng-container>
     <ng-container *ngIf="showDiagnostic">Hide Diagnostic</ng-container>
   </button>
-</mat-toolbar>
 
-<mat-progress-bar mode="indeterminate" *ngIf="loading" color="accent"></mat-progress-bar>
 
-<div fxLayout="row" fxLayoutGap="20px" class="container">
-  <mat-card fxFlex>
-    <mat-card-header>
-      <mat-card-title>Operation</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-form-field>
-        
-        <input matInput name="id" [(ngModel)]="movie.id" placeholder="id">
-      </mat-form-field>
-    </mat-card-content>
 
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="getMovieRequest()" [disabled]="loading">get movie</button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card fxFlex>
-    <mat-card-header>
-      <mat-card-title>Result</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-form-field>
-        <input matInput readonly [(ngModel)]="message" placeholder="{{resultLabel}}">
-      </mat-form-field>
-    </mat-card-content>
-  </mat-card>
+      <div>
+        <input name="id" [(ngModel)]="movie.id" placeholder="id">
+      </div>
+
+    <div>
+      <button color="primary" (click)="getMovieRequest()" [disabled]="loading">get movie</button>
+    </div>
+    <div>
+      <span>Response</span>
+        <input readonly [(ngModel)]="message" placeholder="{{resultLabel}}">
+
 </div>
 
-<div fxLayout="row" fxLayoutGap="20px" class="container" *ngIf="showDiagnostic">
-  <mat-card fxFlex>
-    <mat-card-header>
-      <mat-card-title>XML Response</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      {{ xmlResponse }}
-    </mat-card-content>
+<div *ngIf="showDiagnostic">
+  <h2>XML Response</h2> <br>
+  <div><span>{{xmlResponse}}</span></div>
 <br>
-    <mat-card-content>
-      {{ message }}
-    </mat-card-content>
-  </mat-card>
+    
+  <div><span>{{message}}</span></div>
 </div>
