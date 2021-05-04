@@ -1,11 +1,24 @@
 import { browser, by, element } from 'protractor';
 
-export class AppPage {
-  navigateTo(): Promise<unknown> {
-    return browser.get(browser.baseUrl) as Promise<unknown>;
+export class AppDashboard {
+
+  getBrowser() {
+    return browser;
   }
 
-  getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  navigateTo() {
+    return browser.get('/');
   }
+
+  getParagraphText() {
+    return element(by.xpath('/html/body/app-dashboard/div/main/div/ng-component/div/span')).getText();
+  }
+  getBody() {
+    return element(by.xpath('/html/body'));
+  }
+  getByCss(selector) {
+    return element.all(by.css(selector));
+  }
+
+
 }

@@ -1,0 +1,108 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+    <div class="card-body">
+        <form novalidate (ngSubmit)="save()" [formGroup]="productoForm">
+            
+            <!-- codifgoProducto --> 
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="codigoProducto">Código</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="codigoProducto" type="text" placeholder="Código del Producto (obligatorio)"
+                        formControlName="codigoProducto" [ngClass]="{'is-invalid': displayMessage.codigoProducto }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.codigoProducto}}
+                    </span>
+                </div>
+            </div>
+
+            <!--proveedorId: have to use id instead of value-->
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="proveedorId">Proveedor</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="proveedorId" type="text" placeholder="Proveedor (obligatorio)"
+                        formControlName="proveedorId" [ngClass]="{'is-invalid': displayMessage.proveedorId }" >
+                        <option *ngFor='let c of proveedores' [ngValue]="c">{{c}}</option>
+                    </select>
+                    <span class="invalid-feedback">
+                        {{displayMessage.proveedorId}}
+                    </span>
+                </div>
+            </div>
+            <!--unidadDeMedida: have to use id instead of value-->
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="unidadDeMedida">Unidad De Medida</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="unidadDeMedida" type="text" placeholder="Unidad de Medida (obligatorio)"
+                        formControlName="unidadDeMedida" [ngClass]="{'is-invalid': displayMessage.unidadDeMedidaId }" >
+                        <option *ngFor='let c of unidadesDeMedida' [ngValue]="c">{{c}}</option>
+                    </select>
+                    <span class="invalid-feedback">
+                        {{displayMessage.unidadDeMedidaId}}
+                    </span>
+                </div>
+            </div>
+            <!--descripcion-->
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="descripcionId">Descripcion</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="descripcionId" type="text" placeholder="Descripcion (obligatorio)"
+                        formControlName="descripcion" [ngClass]="{'is-invalid': displayMessage.descripcion }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.descripcion}}
+                    </span>
+                </div>
+            </div>
+            <!--marca-->
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="marcaId">Marca</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="marcaId" type="text" placeholder="Marca (obligatorio)"
+                        formControlName="marca" [ngClass]="{'is-invalid': displayMessage.marca }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.marca}}
+                    </span>
+                </div>
+            </div>
+            <!--costoPonderado-->
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="costoPonderadoId">Costo Ponderador</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="costoPonderadoId" type="text" placeholder="Costo Ponderado (obligatorio)"
+                        formControlName="costoPonderado" [ngClass]="{'is-invalid': displayMessage.costoPonderado }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.costoPonderado}}
+                    </span>
+                </div>
+            </div>
+            
+            
+              
+             
+
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-8">
+                    <!-- Boton Guardar -->
+                    <button class="btn btn-primary mr-3" type="submit" style="width:90px"
+                        [title]="productoForm.valid ? 'Salve los cambios realizados' : 'Desahbilitado hasta que valide todos los campos'"
+                        [disabled]="!productoForm.valid">
+                        Guardar
+                    </button>
+                    <!-- Boton Cancelar -->
+                    <button class='btn btn-outline-secondary  mr-3' [routerLink]="['/producto/producto-list']" style='width:90px'>
+                       Cancelar
+                    </button>
+                    <!-- Boton Eliminar -->
+                    <button class="btn btn-outline-warning  mr-3" style="width:90px" type="button"
+                        title="Eliminar este isla" (click)="deleteProducto()">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </form> 
+    </div>
+</div>
+
+

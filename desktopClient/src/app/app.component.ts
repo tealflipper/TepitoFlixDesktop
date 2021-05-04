@@ -1,67 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
-import { NgxSoapService, Client, ISoapMethodResponse } from 'ngx-soap';
+import { IconSetService } from '@coreui/icons-angular';
+import { freeSet } from '@coreui/icons';
 
-import { HttpClient } from '@angular/common/http';
-
-import { from } from 'rxjs'
-import { Movie } from './movie';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  // tslint:disable-next-line
+  selector: 'body',
+  template: '<router-outlet></router-outlet>',
+  providers: [IconSetService],
 })
-export class AppComponent implements OnInit{
-  xmlResponse:any;
-  client: Client;
-  movie:Movie={
-    id: 1,
-    name: 'tree'
-  };
-  id:number;
-  loading: boolean;
-  showDiagnostic: boolean;
-  message: string;
-  jsonResponse: string;
-  resultLabel: string;
-  title = 'desktopClient';
-
-  constructor(private http:HttpClient,private soap: NgxSoapService) {
-    const prom = this.soap.createClient('assets/movies.wsdl').then(client => {
-      this.client = client;
-      console.log('Created client!');
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  }
+export class AppComponent implements OnInit {
+  title = 'StationX: Inventarios';
+  constructor(
+    private router: Router,
+    public iconSet: IconSetService) { 
+      // iconSet singleton
+      iconSet.icons = {  ...freeSet };
+    }
 
   ngOnInit() {
-    const prom = this.soap.createClient('assets/movies.wsdl').then(client => {
-        this.client = client;
-        console.log('Created client!');
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
-
-
-
-  getMovieRequest() {
-    const body = {
-      id: this.movie.id
-    };
-    this.xmlResponse = "";
-          this.message = "";
-    this.client.call('getMovie',body).subscribe(
-        (res: ISoapMethodResponse) => {
-          console.log('method response', res);
-          this.xmlResponse = res.xml;
-          this.message = JSON.stringify(res.result);
-          this.loading = false;
-        },
-        err => console.log(err)
-      );
-}
 }
