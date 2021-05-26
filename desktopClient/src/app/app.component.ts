@@ -35,15 +35,7 @@ export class AppComponent implements OnInit{
       console.log(error);
     });
   }
-
-  ngOnInit() {
-    const prom = this.soap.createClient('assets/movies.wsdl').then(client => {
-        this.client = client;
-        console.log('Created client!');
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  ngOnInit(): void {
   }
 
 

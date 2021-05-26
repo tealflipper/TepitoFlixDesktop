@@ -13,17 +13,7 @@ public class DesktopClientApplication {
 
 	public static void main(String[] args) throws SQLException{
             
-            try (Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/TepitoFlix", "admin", "Password123")) {
-                // create a Statement
-                try (Statement stmt = conn.createStatement()) {
-                    //execute query
-                    try (ResultSet rs = stmt.executeQuery("SELECT * from movies")) {
-                        //position result to first
-                        rs.first();
-                        System.out.println(rs.getString(1)); //result is "Hello World!"
-                    }
-                }
-            }
+            
 		SpringApplication.run(DesktopClientApplication.class, args);
                 
                 //create connection for a server installed in localhost, with a user "root" with no password
