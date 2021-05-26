@@ -11,7 +11,7 @@ import { freeSet } from '@coreui/icons';
   providers: [IconSetService],
 })
 export class AppComponent implements OnInit {
-  title = 'StationX: Inventarios';
+  title = 'TepitoFlix';
   constructor(
     private router: Router,
     public iconSet: IconSetService) { 
