@@ -12,7 +12,7 @@ export class SoapService
 
   getSoapData()
   {
-    return this.http.get('assets/testdata.xml', {responseType: 'text'})
+    return this.http.get('http://localhost:8080/ws', {responseType: 'text'})
       .pipe(
         map((xmlString: string)=>{
           const asJson = this.xmlStringToJson(xmlString);
