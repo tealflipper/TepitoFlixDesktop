@@ -4,7 +4,7 @@
     </div>
     <div class='card-body'>
         <div class='row'>
-            <div class='col-md-2'>Filtrado por (Código):</div>
+            <div class='col-md-2'>Filtrado por (nombre):</div>
             <div class='col-md-4'>
                 <input type='text' [(ngModel)]='listFilter' />
             </div>
@@ -16,20 +16,32 @@
         </div>
         <!-- {{concesionarios | json}} -->
         <div class='table-responsive'>
-            <table class='table' *ngIf='productos && productos.length'>
+            <table class='table' *ngIf='peliculas && peliculas.length'>
                 <thead>
                     <tr>
                         <!-- <th>Id</th> -->
-                        <th>Código de producto</th>
-                        <th>Descripcion</th>
+                        <th>id</th>
+                        <th>titulo</th>
+                        <th>director</th>
+                        <th>genero</th>
+                        <th>año de estreno</th>
+                        <th>duracion</th>
+                        <th>precio</th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let c of filteredProductos'>
+                    <tr *ngFor='let c of filteredPeliculas'>
 
-                        <td>{{ c.codigoProducto}}</td>
-                        <td>{{ c.Descripcion}}</td>
+                        <td>{{ c.id}}</td>
+                        <td>{{ c.title}}</td>
+                        <td>{{ c.director}}</td>
+                        <td>{{ c.genre}}</td>
+                        <td>{{ c.release}}</td>
+                        <td>{{ c.runtime}}</td>
+                        <td>{{ c.price}}</td>
+
+                        
                         
                         <td>
                             <button class="btn btn-outline-primary btn-sm"

@@ -22,8 +22,8 @@ export const routes: Routes = [
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'producto',
-        loadChildren: () => import('./views/producto/producto.module').then(m => m.ProductoModule)
+        path: 'pelicula',
+        loadChildren: () => import('./views/pelicula/pelicula.module').then(m => m.PeliculaModule)
       }
     ]
   },

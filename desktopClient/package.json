@@ -1,6 +1,7 @@
 {
   "name": "StationxInventario",
   "version": "2.11.2",
+  "main": "main.js", 
   "author": {
     "name": "Łukasz Holeczek",
     "url": "http://holeczek.pl",
@@ -26,7 +27,8 @@
     "lint": "ng lint",
     "pree2e": "npm run postinstall",
     "e2e": "ng e2e",
-    "release-version": "node build/change-version.js"
+    "release-version": "node build/change-version.js",
+    "electron": "ng build --base-href ./ && electron ."
   },
   "private": true,
   "dependencies": {
@@ -74,6 +76,7 @@
     "@types/jasminewd2": "^2.0.8",
     "@types/node": "^14.14.33",
     "codelyzer": "^6.0.0",
+    "electron": "^12.0.6",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.2.0",

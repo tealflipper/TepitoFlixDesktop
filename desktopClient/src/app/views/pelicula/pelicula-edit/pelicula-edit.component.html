@@ -1,0 +1,114 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+    <div class="card-body">
+        <form novalidate (ngSubmit)="save()" [formGroup]="peliculaForm">
+            
+           
+            <div class="form-group row mb-2">
+                <!-- id --> 
+                <label class="col-md-2 col-form-label" for="id">id</label>
+                <div class="col-md-2">
+                    <input class="form-control" id="id" type="number" placeholder="id"
+                        formControlName="id" [ngClass]="{'is-invalid': displayMessage.id }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.id}}
+                    </span>
+                </div>
+                 <!-- title --> 
+                <label class="col-md-2 col-form-label" for="title">Titulo</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="title" type="text" placeholder="Titulo"
+                        formControlName="title" [ngClass]="{'is-invalid': displayMessage.title }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.title}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-4">
+                <!-- genre --> 
+                <label class="col-md-2 col-form-label" for="genre">Genero</label>
+                <div class="col-md-2">
+                    <input class="form-control" id="genre" type="text" placeholder="Genero"
+                        formControlName="genre" [ngClass]="{'is-invalid': displayMessage.genre }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.genre}}
+                    </span>
+                </div>
+                <!-- director --> 
+                <label class="col-md-2 col-form-label" for="director">Director</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="director" type="text" placeholder="Director"
+                        formControlName="director" [ngClass]="{'is-invalid': displayMessage.director }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.director}}
+                    </span>
+                </div>
+                
+            </div>
+
+            <div class="form-group row mb-4">
+                <!-- release --> 
+                <label class="col-md-2 col-form-label" for="release">Año de Estreno</label>
+                <div class="col-md-2">
+                    <input class="form-control" id="release" type="number" min="1924" max="3000" placeholder="1924"
+                        formControlName="release" [ngClass]="{'is-invalid': displayMessage.release }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.release}}
+                    </span>
+                </div>
+                <!-- runtime --> 
+                <label class="col-md-2 col-form-label" for="runtime">Duración</label>
+                <div class="col-md-2">
+                    <input class="form-control" id="runtime" type="number" placeholder="0"
+                        formControlName="runtime" [ngClass]="{'is-invalid': displayMessage.runtime }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.runtime}}
+                    </span>
+                </div>
+                <!-- price --> 
+                <label class="col-md-2 col-form-label" for="price">Precio</label>
+                <div class="col-md-2">
+                    <input class="form-control" id="price" type="number" step="0.01" placeholder="00.00"
+                        formControlName="price" [ngClass]="{'is-invalid': displayMessage.price }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.price}}
+                    </span>
+                </div>
+            </div>
+       
+             
+
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-8">
+                    <!-- Boton Guardar -->
+                    <button class="btn btn-primary mr-3" type="submit" style="width:90px"
+                        [title]="peliculaForm.valid ? 'Salve los cambios realizados' : 'Desahbilitado hasta que valide todos los campos'"
+                        [disabled]="!peliculaForm.valid">
+                        Guardar
+                    </button>
+                    <!-- Boton Cancelar -->
+                    <button class='btn btn-outline-secondary  mr-3' [routerLink]="['/pelicula/pelicula-list']" style='width:90px'>
+                       Cancelar
+                    </button>
+                    <!-- Boton Eliminar -->
+                    <button class="btn btn-outline-warning  mr-3" style="width:90px" type="button"
+                        title="Eliminar este isla" (click)="deletePeliculas()">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </form> 
+    </div>
+</div>
+<!--
+<br>Dirty: {{ peliculaForm.dirty }}
+<br>Touched: {{ peliculaForm.touched }}
+<br>Valid: {{ peliculaForm.valid }}
+<br>Value: {{ peliculaForm.value | json }}
+-->
+
+
