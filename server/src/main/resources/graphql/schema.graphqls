@@ -4,6 +4,8 @@ schema {
 type Query{
     # Fetch All Movies
     getAllMovies:[Movie]
+    #Fetch a movie
+    getMovie(id: ID!):Movie
 }
 type Movie {
     id:ID!,

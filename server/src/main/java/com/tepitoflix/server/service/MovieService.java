@@ -24,4 +24,8 @@ public class MovieService implements GraphQLQueryResolver {
     public List<Movie> getAllMovies() {
         return movieRepository.findAll();
     }
+    
+    public Movie getMovie(Integer id) {
+        return movieRepository.findById(id).get();
+    }
 }
