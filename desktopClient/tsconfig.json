@@ -16,7 +16,8 @@
     ],
     "lib": [
       "es2018",
-      "dom"
+      "dom",
+      "esnext.asynciterable"
     ],
     "paths": {
       "@coreui/angular": [
@@ -28,5 +29,7 @@
     "enableIvy": false,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true
 }

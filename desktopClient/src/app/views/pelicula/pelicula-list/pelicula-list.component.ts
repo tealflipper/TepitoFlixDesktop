@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Pelicula } from '../pelicula';
 import { PeliculaService } from '../pelicula.service';
+import {Apollo} from 'apollo-angular';
+import { ApolloClient } from 'apollo-client';
+import { gql, useQuery } from '@apollo/client';
 
 @Component({
   selector: 'app-pelicula-list',
@@ -13,17 +16,13 @@ export class PeliculaListComponent implements OnInit {
   errorMessage = '';
   _listFilter = '';
   filteredPeliculas: Pelicula[];
-  peliculas: Pelicula[] = [{
-    id: 1,
-    title: 'spooderman',
-    director: 'sml',
-    genre: 'horror',
-    release: 1997,
-    runtime: 96,
-    price: 9.99
-  }] ;
+  peliculas: any = {};
+  loading = true;
+  error: any;
 
-  constructor(private peliculaService: PeliculaService) { }
+  constructor(private apollo: Apollo) { }
+
+
   get listFilter(): string {
     return this._listFilter;
   }
@@ -40,6 +39,28 @@ export class PeliculaListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            getAllMovies{
+              id
+              title
+              director
+              genre
+              release
+              runtime
+              price
+            }
+          }
+        `,
+      })
+      .valueChanges.subscribe(data => {
+        console.log(data)
+        this.peliculas = data;
+        
+      });
+  
     this.filteredPeliculas = this.peliculas;
   }
 
