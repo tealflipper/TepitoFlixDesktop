@@ -11,7 +11,7 @@ import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular
 
 import {APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLink} from 'apollo-angular/http';
-import {InMemoryCache} from '@apollo/client/core';
+import {InMemoryCache} from '@apollo/client/core'
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -79,7 +79,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'https://48p1r2roz4.sse.codesandbox.io',
+            uri: 'http://localhost:8080/graphql',
           }),
         };
       },

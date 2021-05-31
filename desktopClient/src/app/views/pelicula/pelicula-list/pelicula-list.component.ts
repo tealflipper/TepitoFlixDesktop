@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Pelicula } from '../pelicula';
 import { PeliculaService } from '../pelicula.service';
-import {Apollo} from 'apollo-angular';
-import { ApolloClient } from 'apollo-client';
-import { gql, useQuery } from '@apollo/client';
+import {ApolloClient, InMemoryCache} from '@apollo/client/core';
+import {Apollo, gql} from 'apollo-angular';
+import {HttpLink} from 'apollo-angular/http';
 
 @Component({
   selector: 'app-pelicula-list',
@@ -55,13 +55,14 @@ export class PeliculaListComponent implements OnInit {
           }
         `,
       })
-      .valueChanges.subscribe(data => {
-        console.log(data)
-        this.peliculas = data;
-        
+      .valueChanges.subscribe(result => {
+        this.peliculas = result.data;  
+        this.peliculas=this.peliculas.getAllMovies;
+        console.log(this.peliculas); 
+        this.filteredPeliculas = this.peliculas;     
       });
-  
-    this.filteredPeliculas = this.peliculas;
+    
+    
   }
 
 }
