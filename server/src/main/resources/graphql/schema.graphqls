@@ -1,0 +1,16 @@
+schema {
+    query: Query,   
+}
+type Query{
+    # Fetch All Movies
+    getAllMovies:[Movie]
+}
+type Movie {
+    id:ID!,
+    title:String,
+    director:String,
+    genre:String,
+    release:Int,
+    runtime:Int,
+    price:Float,
+}
