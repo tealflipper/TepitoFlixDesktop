@@ -14,6 +14,7 @@ import lombok.*;
  * @author arturo
  */
 
+@Getter
 @Setter
 @NoArgsConstructor
 @Entity

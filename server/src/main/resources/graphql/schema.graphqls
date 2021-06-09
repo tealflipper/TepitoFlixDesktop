@@ -1,12 +1,48 @@
 schema {
-    query: Query,   
+    query: Query,
+    mutation: Mutation,
+    subscription: Subscription,
 }
+
+type Subscription {
+  movieSub: [Movie]
+}
+
 type Query{
     # Fetch All Movies
     getAllMovies:[Movie]
     #Fetch a movie
     getMovie(id: ID!):Movie
 }
+type Mutation {
+    #delete movie with given id
+    deleteMovie(id: Int!):Movie
+
+    addMovie(
+        title: String!,
+        director:String,
+        genre:String,
+        release:Int,
+        runtime:Int,
+        price:Float
+        ): Movie! 
+
+    updateMovie(
+        id:Int!, 
+        title: String, 
+        director:String,
+        genre:String,
+        release:Int,
+        runtime:Int,
+        price:Float
+        ): Movie! 
+
+}
+
+type Subscription {
+    movieSub:[Movie]
+}
+
 type Movie {
     id:ID!,
     title:String,

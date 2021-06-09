@@ -11,7 +11,11 @@ import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular
 
 import {APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLink} from 'apollo-angular/http';
-import {InMemoryCache} from '@apollo/client/core'
+import {InMemoryCache} from '@apollo/client/core';
+import {split, ApolloClientOptions} from '@apollo/client/core';
+import {WebSocketLink} from '@apollo/client/link/ws';
+import {getMainDefinition} from '@apollo/client/utilities';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -44,6 +48,9 @@ import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //TODO: insert 404 and 500 error pages
+
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -76,12 +83,32 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     {
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {
+        const http = httpLink.create({
+          uri: 'http://localhost:8080/graphql',
+        });
+        const ws = new WebSocketLink({
+          uri: `ws://localhost:8080/subs`,
+          options: {
+            reconnect: true,
+          },
+        });
+        const link = split(
+          // split based on operation type
+          ({query}) => {
+            const {kind, operation}:any = getMainDefinition(query);
+            return (
+              kind === 'OperationDefinition' && operation === 'subscription'
+            );
+          },
+          ws,
+          http,
+        );
+
         return {
           cache: new InMemoryCache(),
-          link: httpLink.create({
-            uri: 'http://localhost:8080/graphql',
-          }),
+          link
         };
+        
       },
       deps: [HttpLink],
     },
