@@ -9,17 +9,17 @@
            
             <div class="form-group row mb-2">
                 <!-- id --> 
-                <label class="col-md-2 col-form-label" for="id">id</label>
-                <div class="col-md-2">
+                <!--<label class="col-md-2 col-form-label" for="id">id</label>
+                 <div class="col-md-2">
                     <input class="form-control" id="id" type="number" placeholder="id"
                         formControlName="id" [ngClass]="{'is-invalid': displayMessage.id }" />
                     <span class="invalid-feedback">
                         {{displayMessage.id}}
                     </span>
-                </div>
+                </div> -->
                  <!-- title --> 
                 <label class="col-md-2 col-form-label" for="title">Titulo</label>
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <input class="form-control" id="title" type="text" placeholder="Titulo"
                         formControlName="title" [ngClass]="{'is-invalid': displayMessage.title }" />
                     <span class="invalid-feedback">
@@ -85,9 +85,8 @@
             <div class="form-group row mb-2">
                 <div class="offset-md-2 col-md-8">
                     <!-- Boton Guardar -->
-                    <button class="btn btn-primary mr-3" type="submit" style="width:90px"
-                        [title]="peliculaForm.valid ? 'Salve los cambios realizados' : 'Desahbilitado hasta que valide todos los campos'"
-                        [disabled]="!peliculaForm.valid">
+                    <button class="btn btn-primary mr-3" type="button" style="width:90px"
+                         (click)="save()">
                         Guardar
                     </button>
                     <!-- Boton Cancelar -->

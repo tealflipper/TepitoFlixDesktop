@@ -28,20 +28,23 @@ export class PeliculaListComponent implements OnInit {
   errorMessage = '';
   _listFilter = '';
   filteredPeliculas: Pelicula[];
+  _peliculas: any = {};
   peliculas: any = {};
   loading = true;
   error: any;
 
   constructor(private apollo: Apollo) { }
 
-
+  setPeliculas(lista:[any]){
+    this.peliculas = lista;
+  }
   get listFilter(): string {
     return this._listFilter;
   }
 
   set listFilter(value: string) {
     this._listFilter = value;
-    this.filteredPeliculas = this.performFilter(this.listFilter);
+    this.filteredPeliculas = this.listFilter ? this.performFilter(this.listFilter) : this.peliculas;
   }
 
   performFilter(filterBy: string): Pelicula[] {
@@ -78,6 +81,7 @@ export class PeliculaListComponent implements OnInit {
         query: MOVIE_SUB,
       }).subscribe(data => {
         this.peliculas = data.data.movieSub;
+        this.setPeliculas(this.peliculas);
         // console.log(data.data);     
       });
     
